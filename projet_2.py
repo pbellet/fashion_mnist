@@ -93,9 +93,11 @@ model.add(tf.keras.layers.Conv2D(filters=64, kernel_size=2, padding='same', acti
 model.add(tf.keras.layers.MaxPooling2D(pool_size=2))
 model.add(tf.keras.layers.Dropout(0.3))
 
-model.add(tf.keras.layers.Conv2D(filters=32, kernel_size=2, padding='same', activation='relu'))
+model.add(tf.keras.layers.Conv2D(filters=64, kernel_size=2, padding='same', activation='relu'))
 #model.add(tf.keras.layers.MaxPooling2D(pool_size=2))
 #model.add(tf.keras.layers.Dropout(0.3))
+
+
 
 model.add(tf.keras.layers.Conv2D(filters=32, kernel_size=2, padding='same', activation='relu'))
 model.add(tf.keras.layers.MaxPooling2D(pool_size=2))
@@ -125,7 +127,7 @@ model.fit(x_train,
          validation_data=(x_valid, y_valid),
          callbacks=[checkpointer])
 
-
+model.load(filepath='model.weights.best.hdf5')
 # Evaluate the model on test set
 score = model.evaluate(x_test, y_test, verbose=0)
 
